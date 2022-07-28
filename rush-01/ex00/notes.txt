@@ -1,0 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abruere <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/16 20:02:27 by abruere           #+#    #+#              #
+#    Updated: 2022/07/16 20:04:35 by abruere          ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
+
+/// NOTES & ORGANISATION ///
+
+Description de l’algorithme :
+
+- Conditions de sortie du programme
+	- Nombre d’arguments
+	- Format des arguments : “int int int…”
+	- Impossible à résoudre : si un élément ne peut être déterminé (bien tester toutes les possibilités jusqu’à trouver une solution qui fonctionne, pas besoin de checker si plusieurs solutions)
+     ⇒ Afficher “Error” et “\n” : (ft_puterror ?)
+
+- Interpréter l’argument : plusieurs options
+	- Créer et remplir 2 int** avec [l][c] puis [c][l] pour appliquer et vérifier les contraintes aux 2 dimensions
+	- Créer un tableau int**[4][4] (notre tableau à remplir et retourner a la fin) : tab
+- Créer un tableau int***[4][4][4] { { {1, 2, 3, 4}, {1, 2, 3, 4}, … } duquel on supprimera les valeurs ne répondant pas aux conditions : pos (possibilités) / temp (temporaire)
+- Remplir ce tableau avec quelques valeurs évidentes : ft_start
+    - Pour les 1 : 4
+    - Pour les 4 : 1, 2, 3, 4
+    - Pour les 3 : 1 ou 2
+    - Pour les 2 : 1 ou 2 ou 3
+    - 2> . . . . <3 → |?| |4| |?| |?|
+    - 2> . . . . <1 → |3| |?| |?| |4|
+    - … ???
+- Conditions : ft_cond / ft_check / ft_clue / …
+    - Pour chaque ligne et chaque colonne : 1 seule occurrence pour chaque chiffre
+    - Maximum 4 occurrences dans tout le tableau pour chaque caractère
+    - Nombre par nombre (comment généraliser ?)
+    - Pour chaque case : tester toutes les conditions et éliminer les nombres
+        - S’il ne reste qu’un seul chiffre : remplir tab
+- Afficher le tableau : ft_puttab
+
+Répartition des tâches :
+	- Arthur : conversion de la chaine de caractères en paramètre en int **[4][4]
+	- Adrien : réception supposée du int **[4][4] d’Arthur et création d’un autre int **[4][4] contenant des 0 sauf les premiers caractères correspondant aux contraintes simples (4 : entrer 1,2,3,4 dans le bon ordre ; 1 : entrer 4 ; etc)
+	- Aurélien : création du int ***[4][4][4] contenant toutes les réponses possibles pour chqaue case et adaptation en fonction du int ** d’Adrien
